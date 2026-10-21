@@ -31,4 +31,7 @@ mkdir -p /tmp/health
 echo "ok" > /tmp/health/index.html
 python3 -m http.server "${PORT:-10000}" --bind 0.0.0.0 --directory /tmp/health >/dev/null 2>&1 &
 
+if [ -n "$HERMES_MODEL" ]; then
+  hermes config set model "$HERMES_MODEL" || true
+fi
 exec hermes gateway run
