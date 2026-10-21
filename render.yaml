@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: legendary-hermes
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: HERMES_INFERENCE_PROVIDER
+        value: openrouter
+      - key: HERMES_MODEL
+        value: deepseek/deepseek-chat
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_ALLOWED_USERS
+        sync: false
